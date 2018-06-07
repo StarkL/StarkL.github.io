@@ -66,6 +66,81 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-web模拟微信悬浮球" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/07/web模拟微信悬浮球/" class="article-date">
+  <time datetime="2018-06-07T04:39:34.000Z" itemprop="datePublished">2018-06-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/07/web模拟微信悬浮球/">web模拟微信悬浮球</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p>看到<a href="http://www.zhangxinxu.com/wordpress/2018/06/wechat-web-page-float-window-interaction/" target="_blank" rel="noopener">张鑫旭</a>老前辈发的用黑科技<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/clip-path" target="_blank" rel="noopener">clip-path</a>模拟微信安卓端最近更新的悬浮球效果，顿时激发自己也写一个试试的想法，由于clip-path在兼容方面相当不好，所以这里就用现代浏览器可以兼容的写法来实现。</p>
+<hr>
+<p>先贴最终效果：<br><img src="http://p9w95i18b.bkt.clouddn.com/picture/180607/dHF1CjAHf6.gif" alt="mark"></p>
+<p>效果描述：</p>
+<pre><code>悬浮球点击后打开的页面，点击左上角 X 关闭页面。
+在关闭页面的时候，有一个动画效果：像是把页面缩回了悬浮球里。
+</code></pre><p>实现原理：</p>
+<pre><code>悬浮球打开的页面相当于一个独立的webview（可以理解为浏览器的一个标签页），这里直接用一个z-index较高的遮罩层来模拟了。
+关键点：点击关闭的时候动画加载，这里用transition过渡动画，改变容器的宽高和圆角属性，同时设置容器超出隐藏效果。
+</code></pre><p>分解步骤：</p>
+<ol>
+<li><p>简单布局微信黑色header，和悬浮窗打开后的样式</p>
+<p><img src="http://p9w95i18b.bkt.clouddn.com/picture/180607/dGhg1H07e0.png?imageslim" alt="微信黑色的header"></p>
+<p><img src="http://p9w95i18b.bkt.clouddn.com/picture/180607/hH3DCC1mD3.png?imageslim" alt="mark"></p>
+</li>
+<li><p>实现点击小球展开页面效果</p>
+<p> 默认有一个悬浮球在微信首页，（这里悬浮球的拖动和边缘吸附网上很多教程，这里就不做了）。其实是一个容器，里面放置一个灰色遮罩层，用于遮挡页面内容，再放置一个层级较高的img图片（就是这个链接图标）。<br> 点击小球后，</p>
+<pre><code>1. 先让img图片隐藏，
+2. 再改变容器的样式，进行动画过渡，
+3. 过渡结束后隐藏灰色遮罩层，显示出页面内容。
+</code></pre></li>
+<li><p>实现点击页面 X 收缩页面到悬浮球里</p>
+<p> 点击x后：<br> 1.先显示遮罩层，遮挡页面内容（因为过渡动画的过程中，文档流布局会因为容器宽高变化而实时的发生的回流）<br> 2.改变容器样式，进行动画过渡，<br> 3.过渡结束后，显示img图标</p>
+</li>
+</ol>
+<p>需要改进的地方（回流问题）：</p>
+<pre><code>认真看微信悬浮球打开后的效果，过程是：
+
+1.创建一个webview
+2.将设置url跳转到指定链接（中间会有一个白屏期）
+
+所以生产使用时候，同样，页面收缩时，清空页面内容
+展开页面后，填充页面内容
+</code></pre><hr>
+<p>贴上代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">  &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span><br><span class="line">  &lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"ie=edge"</span>&gt;</span><br><span class="line">  &lt;title&gt;Document&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">  &lt;style&gt;</span></span><br><span class="line"><span class="regexp">    * &#123;</span></span><br><span class="line"><span class="regexp">      margin: 0;</span></span><br><span class="line"><span class="regexp">      padding: 0;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    header &#123;</span></span><br><span class="line"><span class="regexp">      display: flex;</span></span><br><span class="line"><span class="regexp">      justify-content: space-between;</span></span><br><span class="line"><span class="regexp">      align-items: center;</span></span><br><span class="line"><span class="regexp">      padding: 0 10px;</span></span><br><span class="line"><span class="regexp">      height: 44px;</span></span><br><span class="line"><span class="regexp">      background-color: #000;</span></span><br><span class="line"><span class="regexp">      color: #fff;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    .menu &#123;</span></span><br><span class="line"><span class="regexp">      letter-spacing: 4px;</span></span><br><span class="line"><span class="regexp">      font-size: 20px;</span></span><br><span class="line"><span class="regexp">      font-weight: 800;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    html,</span></span><br><span class="line"><span class="regexp">    body,</span></span><br><span class="line"><span class="regexp">    .float-wrap,</span></span><br><span class="line"><span class="regexp">    .float-content &#123;</span></span><br><span class="line"><span class="regexp">      width: 100%;</span></span><br><span class="line"><span class="regexp">      height: 100%;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    .float-wrap &#123;</span></span><br><span class="line"><span class="regexp">      transition: all 0.5s;</span></span><br><span class="line"><span class="regexp">      position: absolute;</span></span><br><span class="line"><span class="regexp">      z-index: 10;</span></span><br><span class="line"><span class="regexp">      left: 0;</span></span><br><span class="line"><span class="regexp">      top: 0;</span></span><br><span class="line"><span class="regexp">      overflow: hidden;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    .shadow &#123;</span></span><br><span class="line"><span class="regexp">      content: '';</span></span><br><span class="line"><span class="regexp">      position: absolute;</span></span><br><span class="line"><span class="regexp">      z-index: 99;</span></span><br><span class="line"><span class="regexp">      left: 0;</span></span><br><span class="line"><span class="regexp">      top: 0;</span></span><br><span class="line"><span class="regexp">      width: 100%;</span></span><br><span class="line"><span class="regexp">      height: 100%;</span></span><br><span class="line"><span class="regexp">      background-color: lightgray;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    .hide &#123;</span></span><br><span class="line"><span class="regexp">      display: none;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">    .shadow img &#123;</span></span><br><span class="line"><span class="regexp">      width: 100%;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    .float-wrap.collect &#123;</span></span><br><span class="line"><span class="regexp">      left: 300;</span></span><br><span class="line"><span class="regexp">      top: 200px;</span></span><br><span class="line"><span class="regexp">      width: 50px;</span></span><br><span class="line"><span class="regexp">      height: 50px;</span></span><br><span class="line"><span class="regexp">      overflow: hidden;</span></span><br><span class="line"><span class="regexp">      border-radius: 50%;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    .float-content &#123;</span></span><br><span class="line"><span class="regexp">      display: flex;</span></span><br><span class="line"><span class="regexp">      justify-content: center;</span></span><br><span class="line"><span class="regexp">      align-items: center;</span></span><br><span class="line"><span class="regexp">      background-color: lightblue;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    .float-header &#123;</span></span><br><span class="line"><span class="regexp">      display: flex;</span></span><br><span class="line"><span class="regexp">      justify-content: space-between;</span></span><br><span class="line"><span class="regexp">      align-items: center;</span></span><br><span class="line"><span class="regexp">      padding: 0 10px;</span></span><br><span class="line"><span class="regexp">      height: 44px;</span></span><br><span class="line"><span class="regexp">      background-color: #f4f4f4;</span></span><br><span class="line"><span class="regexp">      color: #000;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    .float-menu &#123;</span></span><br><span class="line"><span class="regexp">      font-family: arial;</span></span><br><span class="line"><span class="regexp">      font-size: 20px;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>style&gt;</span><br><span class="line">&lt;<span class="regexp">/head&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;body&gt;</span></span><br><span class="line"><span class="regexp">  &lt;header&gt;</span></span><br><span class="line"><span class="regexp">    &lt;span&gt;巴拉巴拉&lt;/</span>span&gt;</span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"menu"</span>&gt;</span><br><span class="line">      ···</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>header&gt;</span><br><span class="line"></span><br><span class="line">  &lt;div id=<span class="string">"floatWrap"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"float-wrap collect"</span>&gt;</span><br><span class="line">    &lt;div id=<span class="string">"floatHeader"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"float-header"</span>&gt;</span><br><span class="line">      &lt;div id=<span class="string">"floatClose"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"float-menu"</span>&gt;X&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">      &lt;span&gt;巴拉巴拉&lt;/</span>span&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;div id="floatContent" class="float-content"&gt;</span></span><br><span class="line"><span class="regexp">      这里面是内容</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">    &lt;div id=<span class="string">"floatShadow"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"shadow"</span>&gt;</span><br><span class="line">      &lt;img id=<span class="string">"floatShadowImg"</span> src=<span class="string">"http://www.zhangxinxu.com/study/201806/icon-link.png"</span> alt=<span class="string">""</span> id=<span class="string">"icon"</span>&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line"></span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    <span class="keyword">var</span> floatWrap = <span class="built_in">document</span>.getElementById(<span class="string">'floatWrap'</span>);</span><br><span class="line">    <span class="keyword">var</span> floatHeader = <span class="built_in">document</span>.getElementById(<span class="string">'floatHeader'</span>);</span><br><span class="line">    <span class="keyword">var</span> floatClose = <span class="built_in">document</span>.getElementById(<span class="string">'floatClose'</span>);</span><br><span class="line">    <span class="keyword">var</span> floatContent = <span class="built_in">document</span>.getElementById(<span class="string">'floatContent'</span>);</span><br><span class="line">    <span class="keyword">var</span> floatShadow = <span class="built_in">document</span>.getElementById(<span class="string">'floatShadow'</span>);</span><br><span class="line">    <span class="keyword">var</span> floatShadowImg = <span class="built_in">document</span>.getElementById(<span class="string">'floatShadowImg'</span>);</span><br><span class="line">    <span class="keyword">var</span> transitionDuration = <span class="number">500</span>;</span><br><span class="line">    initFloatContentStyle();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 打开浮窗页面</span></span><br><span class="line">    floatWrap.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      floatWrap.classList.remove(<span class="string">'collect'</span>);</span><br><span class="line">      floatShadowImg.classList.add(<span class="string">'hide'</span>);</span><br><span class="line">      doAfterAnimation(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        floatShadow.classList.add(<span class="string">'hide'</span>);</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 收起浮窗页面</span></span><br><span class="line">    floatClose.onclick = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">      floatShadow.classList.remove(<span class="string">'hide'</span>);</span><br><span class="line">      floatWrap.classList.add(<span class="string">'collect'</span>);</span><br><span class="line">      doAfterAnimation(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        floatShadowImg.classList.remove(<span class="string">'hide'</span>);</span><br><span class="line">      &#125;)</span><br><span class="line">      e.stopPropagation();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在动画过后做什么事</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">doAfterAnimation</span>(<span class="params">func</span>) </span>&#123;</span><br><span class="line">      setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        func();</span><br><span class="line">      &#125;, transitionDuration);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 初始化float-content高度</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">initFloatContentStyle</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> screenHeight = <span class="built_in">window</span>.screen.height;</span><br><span class="line">      <span class="keyword">var</span> floatHeaderHeight = floatHeader.offsetHeight;</span><br><span class="line">      floatContent.style.height = screenHeight - floatHeaderHeight + <span class="string">'px'</span>;</span><br><span class="line">      <span class="built_in">console</span>.log(floatHeaderHeight)</span><br><span class="line">    &#125;</span><br><span class="line">  &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>body&gt;</span><br><span class="line"></span><br><span class="line">&lt;<span class="regexp">/html&gt;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/06/07/web模拟微信悬浮球/" data-id="cji44kiib0004hwanw46pg02s" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
     <article id="post-北京租房退押金之路" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/11/16/北京租房退押金之路/" class="article-date">
@@ -165,7 +240,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/16/北京租房退押金之路/" data-id="cji41y3wf000914angpjheczj" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/11/16/北京租房退押金之路/" data-id="cji44kiig0009hwanlb1vchmy" class="article-share-link">分享</a>
       
       
       
@@ -236,7 +311,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/11/01/放开那个IE8/" data-id="cji41y3wi000b14an2llp80c1" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/11/01/放开那个IE8/" data-id="cji44kiip000fhwan06vrv6t0" class="article-share-link">分享</a>
       
       
       
@@ -290,7 +365,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/10/16/腾讯QQ手机电脑互传内容可能会泄露给陌生人！/" data-id="cji41y3wq000h14anpimgybbk" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/10/16/腾讯QQ手机电脑互传内容可能会泄露给陌生人！/" data-id="cji44kiit000jhwan6kv7taxs" class="article-share-link">分享</a>
       
       
       
@@ -360,7 +435,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/08/23/css3里的贝塞尔速度曲线/" data-id="cji41y3w5000114anbxmf7n87" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/08/23/css3里的贝塞尔速度曲线/" data-id="cji44kii90002hwanwrjd08ph" class="article-share-link">分享</a>
       
       
       
@@ -441,7 +516,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/08/17/一个有意思的题目foo-x-foo-n-2/" data-id="cji41y3wb000514anbrvadw3y" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/08/17/一个有意思的题目foo-x-foo-n-2/" data-id="cji44kiif0008hwan0frz523q" class="article-share-link">分享</a>
       
       
       
@@ -512,7 +587,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/08/17/曾经的胡思乱想/" data-id="cji41y3wp000g14antv1f2sb7" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/08/17/曾经的胡思乱想/" data-id="cji44kiiq000ghwan54jtbzk8" class="article-share-link">分享</a>
       
       
       
@@ -568,7 +643,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/17/好用的sublime/" data-id="cji41y3wk000c14anr3qki9df" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/07/17/好用的sublime/" data-id="cji44kiih000ahwant7xd50ef" class="article-share-link">分享</a>
       
       
       
@@ -652,7 +727,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/07/02/抓住自己入神瞬间，提升可能就在一瞬间/" data-id="cji41y3wn000e14an1juvsjdo" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/07/02/抓住自己入神瞬间，提升可能就在一瞬间/" data-id="cji44kiio000ehwan3axty75r" class="article-share-link">分享</a>
       
       
       
@@ -719,84 +794,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/28/JS模块化编程/" data-id="cji41y3vp000014an6ae2upgw" class="article-share-link">分享</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
- 
-
-
-  
-    <article id="post-wap页面rem使用小结" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/06/22/wap页面rem使用小结/" class="article-date">
-  <time datetime="2017-06-22T08:27:07.000Z" itemprop="datePublished">2017-06-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/22/wap页面rem使用小结/">wap页面rem使用小结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <p>刚入行的时候以为，写移动端页面，所有单位都用rem就好，然而，这样会遇到一个坑，当用户横屏的时候，会出现字体超级大，容器塞不下，样式根竖屏的时候比起来乱了很多。</p>
-<p>想想实际应用场景：作为用户，希望无论横屏、竖屏，页面展示的样式尽可能一致，最起码字体大小别忽大忽小，然后大体样式变化尽可能小。</p>
-<p>例如竖屏下这么一个页面：<br><img src="https://ws1.sinaimg.cn/large/006tKfTcly1fgu0e7g1xgj30ze0juta6.jpg" alt=""></p>
-<p>如果全部用rem写，横屏后是这样：<br><img src="https://ws2.sinaimg.cn/large/006tKfTcly1fgu0c6w8f7j31040lu0uv.jpg" alt=""></p>
-<p>而相对之下，用户更希望是这样：<br><img src="https://ws2.sinaimg.cn/large/006tKfTcly1fgu0dcc7t6j31060fqwg0.jpg" alt=""></p>
-<p>这里仅用一个简单展示，对比可以看出，页面单位全部用rem书写的话，会出现<strong> 字体、宽高、位置 </strong>都跟着发生了变化，从而使得整体布局超出想象。</p>
-<p>对比之下，优化后的样式，同样发生了变化，但仅仅是容器的宽度跟着屏宽变大而变宽，字体大小、样式布局还都在承受范围内。</p>
-<hr>
-<p>而要做到这个样子，<br><img src="https://ws2.sinaimg.cn/large/006tKfTcly1fgu0dcc7t6j31060fqwg0.jpg" alt=""><br>就需要对rem的使用有所限制。</p>
-<p>现在分析下代码原理，实现不同屏宽的响应，常用方法是通过js动态监听内置对象window的orientationchange事件，来判断用户是垂直翻转设备，进而根据最新屏宽clientWidth修改html根元素的font-size大小。</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tKfTcly1fgu1ftihmzj30zi0f2adu.jpg" alt=""></p>
-<p>　　而css中用的rem就是根据此font-size大小来计算出具体px单位，进行渲染。</p>
-<p>既然屏幕的宽度在发生变化，那么理论上页面也应该进行 <b>宽度</b> 方面的调节才对。所以：</p>
-<ol>
-<li>字体大小、元素高度方面，没必要变；</li>
-<li>图片的宽高比例也不要变化；</li>
-<li>样式尽可能少的变化</li>
-</ol>
-<p><img src="https://ws3.sinaimg.cn/large/006tKfTcly1fgu1n6w5n9j31ju0co40e.jpg" alt=""></p>
-<p>第1条很容易做到，字体大小和元素高度都用 <b>px</b> 单位就可以。</p>
-<p>而第二条就需要做取舍：</p>
-<ol>
-<li>要想图片比例不变，简单的办法就是图片的宽和高仅设置一项，浏览器会根据图片原宽高比例和自己设置的一项计算出新的大小。</li>
-<li>如果图片根据屏幕宽度变宽而变大，那么它就会影响整体布局，所有相关元素都得发生样式变化。</li>
-<li>假如图片变大，高度撑起了它的容器，而它有一个兄弟元素是一段文字，那么就会出现<img src="https://ws2.sinaimg.cn/large/006tKfTcly1fgu1thy76bj30eu07u74p.jpg" alt="">这样的尴尬情况。</li>
-<li>而综合上面的结论，样式尽可能少的变化，</li>
-<li>所以这里只能舍弃图片变大，当屏幕宽度变宽时候，图片大小不变！</li>
-</ol>
-<p><img src="https://ws4.sinaimg.cn/large/006tKfTcly1fgu1xc9o7hj31020csmy1.jpg" alt=""></p>
-<hr>
-<p>走到这里，结果就已经出来了。</p>
-<p>能改变的只有宽度单位，和左右定位的属性，要用rem单位<br>不能改变的就是字体大小、高度单位和上下定位的单位，要用px单位</p>
-<hr>
-<p>也有这样的解决办法：页面刚加载的时候，就获取设备宽度x和高度y，并给最外层容器例(如：body)设置max-width为x和y的较小者，并添加居中样式；</p>
-<p>这样就算横屏了，仍然以竖屏的宽度显示。</p>
-<p><br><br><br><br></p>
-<p>如有高见，欢迎留言/联系。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/22/wap页面rem使用小结/" data-id="cji41y3wa000414an7mxsopk9" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/06/28/JS模块化编程/" data-id="cji44kii20000hwanzy43cq5n" class="article-share-link">分享</a>
       
       
       
@@ -811,7 +809,7 @@
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页&raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页&raquo;</a>
   </nav>
 </section>
            
@@ -854,6 +852,10 @@
       <ul>
         
           <li>
+            <a href="/2018/06/07/web模拟微信悬浮球/">web模拟微信悬浮球</a>
+          </li>
+        
+          <li>
             <a href="/2017/11/16/北京租房退押金之路/">北京租房退押金之路</a>
           </li>
         
@@ -869,10 +871,6 @@
             <a href="/2017/08/23/css3里的贝塞尔速度曲线/">css3里的贝塞尔运动曲线</a>
           </li>
         
-          <li>
-            <a href="/2017/08/17/一个有意思的题目foo-x-foo-n-2/">一个有意思的题目foo.x = foo = {n: 2}</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -882,7 +880,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title archive">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 
