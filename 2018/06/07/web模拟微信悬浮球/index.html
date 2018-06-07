@@ -5,20 +5,20 @@
   
   <title>web模拟微信悬浮球 | starkL</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="看到张鑫旭老前辈发的用黑科技clip-path模拟微信安卓端最近更新的悬浮球效果，顿时激发自己也写一个试试的想法，由于clip-path在兼容方面相当不好，所以这里就用现代浏览器可以兼容的写法来实现。  先贴最终效果：  效果描述： 悬浮球点击后打开的页面，点击左上角 X 关闭页面。 在关闭页面的时候，有一个动画效果：像是把页面缩回了悬浮球里。 实现原理： 悬浮球打开的页面相当于一个独立的webv">
+  <meta name="description" content="看到张鑫旭老前辈发的用黑科技clip-path模拟微信安卓端最近更新的悬浮球效果，顿时激发自己也写一个试试的想法，由于clip-path在兼容方面相当不好，所以这里就用现代浏览器可以兼容的写法来实现。  先贴最终效果（或查看demo）：  效果描述： 悬浮球点击后打开的页面，点击左上角 X 关闭页面。 在关闭页面的时候，有一个动画效果：像是把页面缩回了悬浮球里。 实现原理： 悬浮球打开的页面相当于">
 <meta property="og:type" content="article">
 <meta property="og:title" content="web模拟微信悬浮球">
 <meta property="og:url" content="http://yoursite.com/2018/06/07/web模拟微信悬浮球/index.html">
 <meta property="og:site_name" content="starkL">
-<meta property="og:description" content="看到张鑫旭老前辈发的用黑科技clip-path模拟微信安卓端最近更新的悬浮球效果，顿时激发自己也写一个试试的想法，由于clip-path在兼容方面相当不好，所以这里就用现代浏览器可以兼容的写法来实现。  先贴最终效果：  效果描述： 悬浮球点击后打开的页面，点击左上角 X 关闭页面。 在关闭页面的时候，有一个动画效果：像是把页面缩回了悬浮球里。 实现原理： 悬浮球打开的页面相当于一个独立的webv">
+<meta property="og:description" content="看到张鑫旭老前辈发的用黑科技clip-path模拟微信安卓端最近更新的悬浮球效果，顿时激发自己也写一个试试的想法，由于clip-path在兼容方面相当不好，所以这里就用现代浏览器可以兼容的写法来实现。  先贴最终效果（或查看demo）：  效果描述： 悬浮球点击后打开的页面，点击左上角 X 关闭页面。 在关闭页面的时候，有一个动画效果：像是把页面缩回了悬浮球里。 实现原理： 悬浮球打开的页面相当于">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://p9w95i18b.bkt.clouddn.com/picture/180607/dHF1CjAHf6.gif">
 <meta property="og:image" content="http://p9w95i18b.bkt.clouddn.com/picture/180607/dGhg1H07e0.png?imageslim">
 <meta property="og:image" content="http://p9w95i18b.bkt.clouddn.com/picture/180607/hH3DCC1mD3.png?imageslim">
-<meta property="og:updated_time" content="2018-06-07T06:02:55.979Z">
+<meta property="og:updated_time" content="2018-06-07T07:00:49.446Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="web模拟微信悬浮球">
-<meta name="twitter:description" content="看到张鑫旭老前辈发的用黑科技clip-path模拟微信安卓端最近更新的悬浮球效果，顿时激发自己也写一个试试的想法，由于clip-path在兼容方面相当不好，所以这里就用现代浏览器可以兼容的写法来实现。  先贴最终效果：  效果描述： 悬浮球点击后打开的页面，点击左上角 X 关闭页面。 在关闭页面的时候，有一个动画效果：像是把页面缩回了悬浮球里。 实现原理： 悬浮球打开的页面相当于一个独立的webv">
+<meta name="twitter:description" content="看到张鑫旭老前辈发的用黑科技clip-path模拟微信安卓端最近更新的悬浮球效果，顿时激发自己也写一个试试的想法，由于clip-path在兼容方面相当不好，所以这里就用现代浏览器可以兼容的写法来实现。  先贴最终效果（或查看demo）：  效果描述： 悬浮球点击后打开的页面，点击左上角 X 关闭页面。 在关闭页面的时候，有一个动画效果：像是把页面缩回了悬浮球里。 实现原理： 悬浮球打开的页面相当于">
 <meta name="twitter:image" content="http://p9w95i18b.bkt.clouddn.com/picture/180607/dHF1CjAHf6.gif">
   
     <link rel="alternate" href="/atom.xml" title="starkL" type="application/atom+xml">
@@ -98,7 +98,7 @@
         
         <p>看到<a href="http://www.zhangxinxu.com/wordpress/2018/06/wechat-web-page-float-window-interaction/" target="_blank" rel="noopener">张鑫旭</a>老前辈发的用黑科技<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/clip-path" target="_blank" rel="noopener">clip-path</a>模拟微信安卓端最近更新的悬浮球效果，顿时激发自己也写一个试试的想法，由于clip-path在兼容方面相当不好，所以这里就用现代浏览器可以兼容的写法来实现。</p>
 <hr>
-<p>先贴最终效果：</p>
+<p>先贴最终效果（或查看<a href="http://www.starkl.win/other/demo/web模拟微信悬浮球.html" target="_blank" rel="noopener">demo</a>）：</p>
 <p><img src="http://p9w95i18b.bkt.clouddn.com/picture/180607/dHF1CjAHf6.gif" alt="mark"></p>
 <p>效果描述：</p>
 <pre><code>悬浮球点击后打开的页面，点击左上角 X 关闭页面。
@@ -147,7 +147,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/06/07/web模拟微信悬浮球/" data-id="cji46tjvr0006jganjcetmis9" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2018/06/07/web模拟微信悬浮球/" data-id="cji470q0m0005lgan9bdtki6x" class="article-share-link">分享</a>
       
       
       
