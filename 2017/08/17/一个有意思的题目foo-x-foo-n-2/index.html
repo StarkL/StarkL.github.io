@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>一个有意思的题目foo.x = foo = {n: 2} | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="今天逛技术博客的时候，遇到一个有意思的面试题：1234var foo = &amp;#123;n: 1&amp;#125;;var bar = foo;foo.x = foo = &amp;#123;n: 2&amp;#125;;console.log(foo.x) 刚看到这个时候没觉着有水分，就是js中赋值符号 ‘=’的右结合性嘛，于是秒想结果是{n: 2} 而往下滚动屏幕，看到的答案确实  undefined  what？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个有意思的题目foo.x = foo = {n: 2}">
+<meta property="og:url" content="http://yoursite.com/2017/08/17/一个有意思的题目foo-x-foo-n-2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="今天逛技术博客的时候，遇到一个有意思的面试题：1234var foo = &amp;#123;n: 1&amp;#125;;var bar = foo;foo.x = foo = &amp;#123;n: 2&amp;#125;;console.log(foo.x) 刚看到这个时候没觉着有水分，就是js中赋值符号 ‘=’的右结合性嘛，于是秒想结果是{n: 2} 而往下滚动屏幕，看到的答案确实  undefined  what？">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fimvgckibjj30am03wdfu.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1fimvmw5op2j30jm0dajsd.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcly1fimvvolfg3j30ia0da0t4.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tKfTcgy1fimvymgcv2j30ku0dg3z9.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fimw5svhwlj30oo0eyq3u.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fimwph9rwnj30pe0fimyb.jpg">
+<meta property="og:updated_time" content="2018-01-06T13:44:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一个有意思的题目foo.x = foo = {n: 2}">
+<meta name="twitter:description" content="今天逛技术博客的时候，遇到一个有意思的面试题：1234var foo = &amp;#123;n: 1&amp;#125;;var bar = foo;foo.x = foo = &amp;#123;n: 2&amp;#125;;console.log(foo.x) 刚看到这个时候没觉着有水分，就是js中赋值符号 ‘=’的右结合性嘛，于是秒想结果是{n: 2} 而往下滚动屏幕，看到的答案确实  undefined  what？">
+<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fimvgckibjj30am03wdfu.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-一个有意思的题目foo-x-foo-n-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/17/一个有意思的题目foo-x-foo-n-2/" class="article-date">
+  <time datetime="2017-08-17T10:43:02.000Z" itemprop="datePublished">2017-08-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      一个有意思的题目foo.x = foo = {n: 2}
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天逛技术博客的时候，遇到一个有意思的面试题：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = &#123;<span class="attr">n</span>: <span class="number">1</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> bar = foo;</span><br><span class="line">foo.x = foo = &#123;<span class="attr">n</span>: <span class="number">2</span>&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(foo.x)</span><br></pre></td></tr></table></figure></p>
+<p>刚看到这个时候没觉着有水分，就是js中赋值符号 ‘=’的右结合性嘛，于是秒想结果是{n: 2}</p>
+<p>而往下滚动屏幕，看到的答案确实</p>
+<blockquote>
+<p>undefined</p>
+</blockquote>
+<p>what？</p>
+<p>看来这道题不是表象那么简单了。在浏览器控制台里测试了下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">foo.x; <span class="comment">//undefined</span></span><br><span class="line">foo; <span class="comment">//&#123;n: 2&#125;</span></span><br><span class="line">bar; <span class="comment">//&#123;n: 1, x: &#123;n: 2&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+<p>哦擦嘞！这题目还包含着对象引用关系的js知识。<br>然后就搜了搜这道题，还真有人单独问这道题的，这里以为大神<a href="https://segmentfault.com/a/1190000004224719" target="_blank" rel="noopener">回答</a>的挺专业.</p>
+<p>不过他是以讲解知识为目的，顺带提起这个问题的，所以如果急于了解这个问题的前端们就可能短时间看不明白了。</p>
+<p>所以这里仅针对这个题目来一个清晰点的解答。</p>
+<hr>
+<p><br><br><br></p>
+<h5 id="js中的-内存"><a href="#js中的-内存" class="headerlink" title="js中的-内存"></a>js中的-<a href="http://www.jianshu.com/p/996671d4dcc4" target="_blank" rel="noopener">内存</a></h5><p>（已经会的可以跳过这段，愿意详细了解的，可以点击‘内存’链接）</p>
+<blockquote>
+<p>在内存中js中5种基础类型的值（string number boolean null undefined）是直接保存在变量的值中的。</p>
+</blockquote>
+<p>例如var a = ‘abc’;<br>在内存中表示为：<img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fimvgckibjj30am03wdfu.jpg" alt=""><br>变量的值就是这个基础类型的数据；</p>
+<p><br><br></p>
+<blockquote>
+<p>其他类型的值如（object array function date regExp…等）是保存在内存堆中，只是暴露出来了一个引用地址<br>把这种类型的值赋值给变量，变量对应的值其实是这个值的引用地址</p>
+</blockquote>
+<p>例如var b = {n: 1};<br>在内存中表示为：<img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fimvmw5op2j30jm0dajsd.jpg" alt="地址的值是乱写的"></p>
+<p><br><br></p>
+<h5 id="js中计算赋值是从右向左计算"><a href="#js中计算赋值是从右向左计算" class="headerlink" title="js中计算赋值是从右向左计算"></a>js中计算赋值是从右向左<a href="http://www.ximalaya.com/30018073/sound/13144303/" target="_blank" rel="noopener">计算</a></h5><p>（已经会的可以跳过这段，愿意详细了解的，可以点击‘计算’链接）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = b = <span class="number">6</span>;</span><br><span class="line"><span class="comment">//js对上面代码赋值是这样的步骤</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="literal">undefined</span> <span class="comment">//预处理阶段：js的声明提前，先声明变量，并赋默认值undefined</span></span><br><span class="line">b = <span class="number">6</span>; <span class="comment">//执行阶段：把6赋值给b，同时这个赋值会返回这个值 6</span></span><br><span class="line">a = <span class="number">6</span>; <span class="comment">//再把返回值6赋值给a</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p><br><br></p>
+<h5 id="题目解析"><a href="#题目解析" class="headerlink" title="题目解析"></a>题目解析</h5><p>简单理解上面两点，就可以结合来看这道题</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = &#123;<span class="attr">n</span>: <span class="number">1</span>&#125;; </span><br><span class="line"><span class="keyword">var</span> bar = foo;</span><br><span class="line">foo.x = foo = &#123;<span class="attr">n</span>: <span class="number">2</span>&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(foo.x)</span><br></pre></td></tr></table></figure>
+<p>① 首先将{n: 1}的引用地址赋值给foo，内存中表现为：<img src="https://ws3.sinaimg.cn/large/006tKfTcly1fimvvolfg3j30ia0da0t4.jpg" alt=""></p>
+<p>② 然后再将foo中的地址赋值给bar，内存中表现为：<img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fimvymgcv2j30ku0dg3z9.jpg" alt=""> 一个对象同时被两个变量引用着</p>
+<p>③ foo.x = foo = {n: 2}</p>
+<p>先将一个新的对象{n: 2}的引用地址赋值给foo，此时内存中表示为：<img src="https://ws1.sinaimg.cn/large/006tNc79gy1fimw5svhwlj30oo0eyq3u.jpg" alt="">关键就在种这里，给foo重新赋值完的一刻，foo已经跟{n: 1}没任何关系了。同时返回{n: 2}这个对象的引用地址</p>
+<p>这一刻上面这段代码在js引擎里（js引擎预处理后，供计算机运行的代码，并非我们书写时的代码）相当于：<br>bar.x = foo = {n: 2}</p>
+<p>因为在未执行这段代码的时候foo.x引用的是{n: 1}这个对象，而foo的值被改变后，原来的foo.x就相当于这一刻的bar.x了</p>
+<p>然后再将返回的引用地址赋值给原来的那个对象{n: 1, x: undefined}里的x属性</p>
+<p>此时内存中表现为：<img src="https://ws3.sinaimg.cn/large/006tNc79gy1fimwph9rwnj30pe0fimyb.jpg" alt=""></p>
+<p>⑤ 所以打印foo.x的时候，js引擎就去找{n: 2}里面的x属性，没找到，就拿undefined回来交差了，</p>
+<p>而此时bar变量引用的对象却有x属性</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/17/一个有意思的题目foo-x-foo-n-2/" data-id="cji40uvyr00052wanxb0b5fg1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/23/css3里的贝塞尔速度曲线/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          css3里的贝塞尔运动曲线
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/17/曾经的胡思乱想/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">曾经的胡思乱想</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/简单解释下vue-cli的项目最外层都引入了什么组件/">简单解释下vue-cli的项目最外层都引入了什么组件</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/简单解释下vue-cli的项目最外层都引入了什么组件/" style="font-size: 10px;">简单解释下vue-cli的项目最外层都引入了什么组件</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/11/16/北京租房退押金之路/">北京租房退押金之路</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/01/放开那个IE8/">放开那个IE8</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/16/腾讯QQ手机电脑互传内容可能会泄露给陌生人！/">安全隐患：腾讯QQ手机电脑互传内容可能会泄露给陌生人！</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/23/css3里的贝塞尔速度曲线/">css3里的贝塞尔运动曲线</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/17/一个有意思的题目foo-x-foo-n-2/">一个有意思的题目foo.x = foo = {n: 2}</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
