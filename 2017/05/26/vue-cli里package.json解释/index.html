@@ -3,15 +3,13 @@
 <head>
   <meta charset="utf-8">
   
-
-  
-  <title>vue-cli里package.json解释 | Hexo</title>
+  <title>vue-cli里package.json解释 | starkL</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="这里简单解释下vue-cli的项目最外层都引入了什么组件 做什么用 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869&amp;#123; //这个代码块里的都是项目描述，是创建者自定义的  &quot;nam">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue-cli里package.json解释">
 <meta property="og:url" content="http://yoursite.com/2017/05/26/vue-cli里package.json解释/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="starkL">
 <meta property="og:description" content="这里简单解释下vue-cli的项目最外层都引入了什么组件 做什么用 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869&amp;#123; //这个代码块里的都是项目描述，是创建者自定义的  &quot;nam">
 <meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2018-06-07T04:16:47.387Z">
@@ -19,15 +17,17 @@
 <meta name="twitter:title" content="vue-cli里package.json解释">
 <meta name="twitter:description" content="这里简单解释下vue-cli的项目最外层都引入了什么组件 做什么用 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869&amp;#123; //这个代码块里的都是项目描述，是创建者自定义的  &quot;nam">
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="starkL" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
   
   
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
   
   <link rel="stylesheet" href="/css/style.css">
+  
+
 </head>
 
 <body>
@@ -36,30 +36,34 @@
       <header id="header">
   <div id="banner"></div>
   <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
+    
     <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
       <nav id="sub-nav">
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
       </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">starkL</a>
+      </h1>
+      
     </div>
   </div>
 </header>
@@ -86,22 +90,67 @@
     
     <div class="article-entry" itemprop="articleBody">
       
+        <!-- Table of Contents -->
+        
         <p>这里简单解释下vue-cli的项目最外层都引入了什么组件 做什么用</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">&#123; //这个代码块里的都是项目描述，是创建者自定义的</span><br><span class="line">  "name": "qqmusic",  //项目名称</span><br><span class="line">  "version": "1.0.0",   //项目版本</span><br><span class="line">  "description": "qq music app by vue", //项目描述</span><br><span class="line">  "author": "yangbo", //项目作者</span><br><span class="line">  "private": true, //是否为私有</span><br><span class="line">  "scripts": &#123; //这里是命名一些变量对应什么指令</span><br><span class="line">    "dev": "node build/dev-server.js", //运行dev 相当于运行node build/dev-server.js</span><br><span class="line">    "start": "node build/dev-server.js", //同上</span><br><span class="line">    "build": "node build/build.js", //同上</span><br><span class="line">    "lint": "eslint --ext .js,.vue src" //同上</span><br><span class="line">  &#125;,</span><br><span class="line">  "dependencies": &#123; //这个代码块描述此 项目依赖 的插件；下面两个做什么的自行搜索</span><br><span class="line">    "vue": "^2.2.6", </span><br><span class="line">    "vue-router": "^2.3.1"</span><br><span class="line">  &#125;,</span><br><span class="line">  "devDependencies": &#123; //这个代码块里描述的是此项目 运行依赖 插件；注意根上面项目依赖的区分</span><br><span class="line">    "autoprefixer": "^6.7.2", //这英文翻译过来就是：自动 预 修复者，专业称呼知道的可以回复下；它是一个css前缀处理工具，有了它我们就不用写很多前缀了</span><br><span class="line">    "babel-core": "^6.22.1", //babel是es6编译工具，将es6 7语法编译成es5语法，以兼容不支持es6 7的浏览器，这个是babel的核心组件</span><br><span class="line">    "babel-eslint": "^7.1.1", //eslint是一个约束编码者的代码风格工具，这个是babel版本的eslint，如果那里写的不符合eslint的要求，就会报错，练习这个建议用熟练的项目来练习</span><br><span class="line">    "babel-loader": "^6.2.10", //这是babel的加载组件，有了它就可以让babel和webpack对我们的js文件进行处理转换</span><br><span class="line">    "babel-plugin-transform-runtime": "^6.22.0", //babel用来修复自己转换不足的一个组件 https://segmentfault.com/q/1010000005596587?from=singlemessage&amp;isappinstalled=1</span><br><span class="line">    "babel-preset-env": "^1.3.2", //智能识别当前运行环境，不支持es6 7才进行转换，在高性能浏览器上会保留高性能的es6 7语法</span><br><span class="line">    "babel-preset-stage-2": "^6.22.0", //stage0 1 2 3是babel编译范围的一个标准，2版本适合开发使用 http://www.cnblogs.com/chris-oil/p/5717544.html</span><br><span class="line">    "babel-register": "^6.22.0", //官方介绍它可以让babel-core自动钩到我们需要编译的地方，懂得请回复，方便大家</span><br><span class="line">    "chalk": "^1.1.3", // 代码的颜色是它帮忙实现的</span><br><span class="line">    "connect-history-api-fallback": "^1.3.0", //解决单页面应用刷新和直接通过域名+参数访问时候出现404的不足 https://github.com/bripkens/connect-history-api-fallback</span><br><span class="line">    "copy-webpack-plugin": "^4.0.1", //webpack的一个文件和目录复制工具，项目部分路径问题的解决者</span><br><span class="line">    "css-loader": "^0.28.0", //css加载组件，默认css不支持@import ../path/test.css 这种在一个css中引入另一个css的方式，而有了它，就可以这样引入了 http://cache.baiducontent.com/c?m=9f65cb4a8c8507ed4fece763105392230e54f73f7e88885468d4e419ce3b46031437bae872750d5592846b6777f1140fbca77666725e60e19499c90bcabae23f2ffe30350042db12448459&amp;p=8c769a47c09f05ff57ee957e610a86&amp;newp=8b2a97118d9159ff57ee957e500793231610db2151d7d5166b82c825d7331b001c3bbfb42324130fd3c0786707ac4b59eff23570310221a3dda5c91d9fb4c57479dc7c6668&amp;user=baidu&amp;fm=sc&amp;query=css-loader&amp;qid=b877345400022555&amp;p1=3</span><br><span class="line">    "eslint": "^3.19.0", //这是官方eslint，用于统一代码风格的工具，写的不符合规范就给报错，再次建议，在自己有把握的熟练项目里练习它比较好</span><br><span class="line">    "eslint-friendly-formatter": "^2.0.7", //个人理解为一个修复eslint导致编辑器打开文件异常的组件 https://www.npmjs.com/package/eslint-friendly-formatter</span><br><span class="line">    "eslint-loader": "^1.7.1", //eslint加载器，类似babel-loder功能</span><br><span class="line">    "eslint-plugin-html": "^2.0.0", //</span><br><span class="line">    "eslint-config-standard": "^6.2.1", //eslint的一个js标准样式配置组件，用于配置如何规定js代码规范的 http://npm.taobao.org/package/eslint-config-standard</span><br><span class="line">    "eslint-plugin-promise": "^3.4.0", //不清楚：难道是针对js的promise功能单独搞的组件？ 请高手回复 https://www.npmjs.com/package/eslint-plugin-promise</span><br><span class="line">    "eslint-plugin-standard": "^2.0.1", //eslint标准生产组件 https://www.npmjs.com/package/eslint-plugin-standard</span><br><span class="line">    "eventsource-polyfill": "^0.9.6", //不清楚：挺常见的单词，难道是解决跨域请求问题的？ 请高手回复 https://www.npmjs.com/package/eventsource</span><br><span class="line">    "express": "^4.14.1", //一个nodeJS常用的框架，超好用，集成很多常用功能，类似jquery的能力</span><br><span class="line">    "extract-text-webpack-plugin": "^2.0.0", //该组件可以解决webpak将css样式打包到js中出现样式错乱的问题 https://github.com/webpack-contrib/extract-text-webpack-plugin http://www.cnblogs.com/dyx-wx/p/6529447.html</span><br><span class="line">    "file-loader": "^0.11.1", //webpack的文件加载组件，解决路径问题的关键组件，</span><br><span class="line">    "friendly-errors-webpack-plugin": "^1.1.3", //报错的有个友好组件，当有报错，会将error信息显示在可视区域</span><br><span class="line">    "html-webpack-plugin": "^2.28.0", //帮助我们生成最终html文件的一个组件 https://www.npmjs.com/package/html-webpack-plugin</span><br><span class="line">    "http-proxy-middleware": "^0.17.3", //http代理中间件，这里用于辅助解决路径问题 https://www.npmjs.com/package/http-proxy-middleware</span><br><span class="line">    "webpack-bundle-analyzer": "^2.2.1", //很有意思的一个组件，用于优化压缩和查找错误模块 https://www.npmjs.com/package/webpack-bundle-analyzer</span><br><span class="line">    "semver": "^5.3.0", //不清楚：难道是版本规范工具？ http://semver.org/lang/zh-CN/</span><br><span class="line">    "shelljs": "^0.7.6", //为nodeJS提供的一个仿UNIX的shell命令的组件 https://www.npmjs.com/package/shelljs</span><br><span class="line">    "opn": "^4.0.2", //为nodeJS提供的一个跨平台打开文件的方法，</span><br><span class="line">    "optimize-css-assets-webpack-plugin": "^1.3.0", //</span><br><span class="line">    "ora": "^1.2.0", //不清楚：难道是提供一个识别参数文件的后缀功能？ https://zhidao.baidu.com/question/581436199.html</span><br><span class="line">    "rimraf": "^2.6.0", //为nodeJS提供的一个UNIX命令，rm -rf 移除文件的功能</span><br><span class="line">    "url-loader": "^0.5.8", //功能同file-loader，不过在它基础上增加了小于8kb的图片直接转换成base64码写进js，减少图片请求，节约资源</span><br><span class="line">    "vue-loader": "^11.3.4", // vue的加载工具，它允许我们使用vue的格式写文件 https://github.com/vuejs/vue-loader</span><br><span class="line">    "vue-style-loader": "^2.0.5", //webpack的vue.js样式加载模块 http://npm.taobao.org/package/vue-style-loader</span><br><span class="line">    "vue-template-compiler": "^2.2.6", //vue编译模板，用于将vue2.0+编译成可供浏览器渲染的常规正常函数 https://npm.taobao.org/package/vue-template-compiler</span><br><span class="line">    "webpack": "^2.3.3", //一款打包工具，还有其他功能，例如路径处理等</span><br><span class="line">    "webpack-dev-middleware": "^1.10.0", //本地改动，webpack相关功能都会实时刷新 https://github.com/webpack/webpack-dev-middleware</span><br><span class="line">    "webpack-hot-middleware": "^2.18.0", //开发时特有的一个中间件，我们本地测试文件的改动都会实时在内存缓存里存储，并没有写入磁盘；</span><br><span class="line">    "webpack-merge": "^4.1.0" //webpack合并文件的组件，我们写很多js文件，最后webpack会将它们合并成一个js，减少网络请求次数 https://www.npmjs.com/package/webpack-merge</span><br><span class="line">  &#125;,</span><br><span class="line">  "engines": &#123; // 引擎相关的内容</span><br><span class="line">    "node": "&gt;= 4.0.0", //要求node版本要大于指定版本，否则不给你运行~</span><br><span class="line">    "npm": "&gt;= 3.0.0" //要求npm版本大于指定版本</span><br><span class="line">  &#125;,</span><br><span class="line">  "browserslist": [ // 配置浏览器的信息查询范围，这些信息将给Autoprefixer babel-env-preset eslint-plugin-compat这些组件来使用 https://www.npmjs.com/package/browserslist</span><br><span class="line">    "&gt; 1%", //</span><br><span class="line">    "last 2 versions", //每种浏览器的最近的两个版本</span><br><span class="line">    "not ie &lt;= 8" //IE8及以下版本不查询</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/26/vue-cli里package.json解释/" data-id="cji415yhk00033canktmq7arm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/26/vue-cli里package.json解释/" data-id="cji41tei20005owanmjvhvky1" class="article-share-link">分享</a>
+      
       
       
     </footer>
   </div>
   
     
+ <script src="/jquery/jquery.min.js"></script>
+  <div id="random_posts">
+    <h2>推荐文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
 <nav id="article-nav">
   
     <a href="/2017/05/27/通过url参数控制页面/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           通过url参数控制页面
@@ -114,13 +163,29 @@
 
   
 </article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+       
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+       
+      
+      
+  </div>
+ 
+  
 
 </section>
-        
-          <aside id="sidebar">
+           
+    <aside id="sidebar">
   
     
 
+  
+    
   
     
 
@@ -129,17 +194,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title recent-posts">最新文章</h3>
     <div class="widget">
       <ul>
         
@@ -168,29 +223,106 @@
   </div>
 
   
+    
+
+  
+    
+  
+    <!--微信公众号二维码-->
+
+
+  
 </aside>
-        
+
       </div>
       <footer id="footer">
   
   <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2018 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    <div id="footer-left">
+      &copy; 2014 - 2018 starkL&nbsp;|&nbsp;
+      主题 <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      联系方式&nbsp;|&nbsp;youemail@outlook.com
     </div>
   </div>
 </footer>
+ <script src="/jquery/jquery.min.js"></script>
     </div>
     <nav id="mobile-nav">
   
-    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="/" class="mobile-nav-link">首页</a>
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
   
 </nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+  
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "e2fb4051c49842688ce669e634bc983f",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ <script src="/js/is.js"></script>
 
 
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
@@ -198,9 +330,7 @@
 
 
 <script src="/js/script.js"></script>
-
-
-
+<script src="/js/elevator.js"></script>
   </div>
 </body>
 </html>
